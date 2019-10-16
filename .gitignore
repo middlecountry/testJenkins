@@ -4,3 +4,6 @@ TestBuild/Library/*
 TestBuild/Logs/*
 TestBuild/Temp/*
 TestBuild/Build/*
+TestBuild/obj/*
+
+TestBuild/.idea/*
