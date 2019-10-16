@@ -3,10 +3,20 @@ pipeline{
     agent any
     
     stages {
-        stage('Build'){
+        stage('Build Start'){
             steps{
-                echo 'writeFile'
-                writeFile file:'test.txt' , text:'Hello world !'
+                echo 'Build Start'
+            }
+        }
+        stage('Write File'){
+            steps{
+                writeFile file:'test.txt' , text:'Hello world !!'
+            }
+        }
+        stage('Read File'){
+            steps{
+                fileContent = readFile file: "test.txt"
+                echo fileContent
             }
         }
     }
