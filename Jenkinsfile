@@ -5,9 +5,10 @@ pipeline{
     stages {
         stage('Build'){
             steps{
-                echo 'Hello wolrd !!'
+                echo 'writeFile'
+                writeFile file:'test.txt' , text:'Hello world !'
             }
         }
     }
     
-}
+} 
