@@ -1,0 +1,6 @@
+﻿
+
+TestBuild/Library/*
+TestBuild/Logs/*
+TestBuild/Temp/*
+TestBuild/Build/*
