@@ -24,7 +24,7 @@ class ProjectBuild : Editor{
     [MenuItem("Build/android")]
     static void BuildForAndroid()
     {
-        Function.DeleteFolder(Application.dataPath+"/Plugins/Android");
+        //Function.DeleteFolder(Application.dataPath+"/Plugins/Android");
  
 //        if(Function.projectName == "91")
 //        {

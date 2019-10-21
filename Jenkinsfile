@@ -1,3 +1,6 @@
+
+
+
 pipeline{
     
     agent any
@@ -20,16 +23,6 @@ pipeline{
                 script {
                     isu = isUnix()
                     echo "isUnix:" + isu
-                }
-            }
-        }
-        stage('Dir'){
-            steps{
-                script {
-                    dir('bbb'){
-                        echo pwd()
-                        bat('echo bat')
-                    }
                 }
             }
         }
@@ -57,14 +50,42 @@ pipeline{
                 }
             }
         }
-        stage('deleteDir'){
+        // stage('Git Pull'){
+        //     steps{
+        //         dir('project'){
+        //             echo pwd()
+        //             //git credentialsId: 'github_w', url: 'git@github.com:middlecountry/testJenkins.git'
+        //             checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github_w', url: 'git@github.com:middlecountry/testJenkins.git']]])
+        //         }
+        //    }
+        // }
+        stage('Build'){
             steps{
-                script {
-                    echo env.WORKSPACE
-                    //deleteDir()
+                script{
+                    echo pwd()
+                    UNITY_PATH="C:\\Program Files\\Unity2018.3.14\\Editor\\Unity.exe"
+                    WORKSPACE=env.WORKSPACE + "\\project\\TestBuild"
+                    bat("\"${UNITY_PATH}\" -quit -batchmode -executeMethod ProjectBuild.BuildForAndroid -projectPath \"${WORKSPACE}\" -logFile build_log.txt")
                 }
             }
         }
+        // stage('Build1'){
+        //     steps{
+        //         script {
+        //             echo pwd()
+        //             exist = fileExists file:'project/TestBuild/Build.bat'
+        //             if(!exist)
+        //             {
+        //                 error message: pwd() + 'project/TestBuild/Build.bat' + " 不存在"
+        //             }
+        //             batContent = readFile file:'project/TestBuild/Build.bat', encoding: "UTF-8"
+        //             echo message: batContent
+        //             bat(batContent)
+        //         }
+        //     }
+        // }
     }
     
-} 
+}
+
+
