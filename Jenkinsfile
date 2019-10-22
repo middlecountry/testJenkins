@@ -62,10 +62,13 @@ pipeline{
         stage('Build'){
             steps{
                 script{
-                    echo pwd()
-                    UNITY_PATH="C:\\Program Files\\Unity2018.3.14\\Editor\\Unity.exe"
-                    WORKSPACE=env.WORKSPACE + "\\project\\TestBuild"
-                    bat("\"${UNITY_PATH}\" -quit -batchmode -executeMethod ProjectBuild.BuildForAndroid -projectPath \"${WORKSPACE}\" -logFile build_log.txt")
+                    dir('project'){
+                        echo pwd()
+                        UNITY_PATH="C:\\Program Files\\Unity2018.3.14\\Editor\\Unity.exe"
+                        WORKSPACE=env.WORKSPACE + "\\project\\TestBuild"
+                        bat("\"${UNITY_PATH}\" -quit -batchmode -executeMethod ProjectBuild.BuildForAndroid -projectPath \"${WORKSPACE}\" -logFile build_log.txt")
+                    }
+                    
                 }
             }
         }
