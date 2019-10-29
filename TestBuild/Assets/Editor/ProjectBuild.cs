@@ -32,6 +32,17 @@ class ProjectBuild : Editor{
 //            Function.CopyDirectory(Application.dataPath+"/91",Application.dataPath+"/Plugins/Android");
 //            PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.Android, "USE_SHARE");+
 //        }
+
+        string val = Environment.GetEnvironmentVariable( "AppRoot" );
+        if (val == null)
+        {
+            Debug.Log("AppRoot:null");
+        }
+        else
+        {
+            Debug.Log("AppRoot:"+val);
+        }
+    
         string path = Application.dataPath + '/' + Function.projectName+".apk";
         path = path.Replace("Assets", "Build");
         BuildReport result = BuildPipeline.BuildPlayer(GetBuildScenes(), path, BuildTarget.Android, BuildOptions.None);
